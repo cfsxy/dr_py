@@ -6,7 +6,6 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  merge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +15,7 @@ jobs:
           # 自行替换要同步的上游仓库地址
           git remote add upstream https://github.com/hjdhnx/dr_py.git
           git fetch upstream
-          git checkout -b dr_py
+          git checkout  dr_py
           git merge  dr_py
           git push origin dr_py
           
