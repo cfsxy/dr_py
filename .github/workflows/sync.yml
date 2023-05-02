@@ -18,8 +18,8 @@ jobs:
           # 自行替换要同步的上游仓库地址
           git remote add upstream https://github.com/hjdhnx/dr_py.git
           git fetch upstream
-          git checkout -b master cfsxy/dr_py
-          git merge  hjdhnx/dr_py
+          git checkout -b master hjdhnx/dr_py
+          git merge  cfsxy/dr_py
           git push origin master
           
           
