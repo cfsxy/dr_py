@@ -16,7 +16,7 @@ jobs:
           git config user.email '514624507@qq.com'
           git pull
           # 自行替换要同步的上游仓库地址
-          git remote add upstream git@//github.com/hjdhnx/dr_py.git
+          git remote add upstream git@github.com/hjdhnx/dr_py.git
           git fetch upstream
           git branch
           git checkout master
