@@ -20,5 +20,5 @@ jobs:
           git checkout cfsxy/dr_py
           git fetch upstream
           git upstream cfsxy/dr_py
-          git push origin master
+          git push origin cfsxy/dr_py
         
