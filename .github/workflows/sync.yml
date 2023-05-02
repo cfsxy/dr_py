@@ -14,11 +14,11 @@ jobs:
         run: |
           git config user.name 'cfsxy'
           git config user.email '514624507@qq.com'
-
+          git pull
           # 自行替换要同步的上游仓库地址
           git remote add upstream https://github.com/hjdhnx/dr_py.git
           git checkout cfsxy/dr_py
           git fetch upstream
-          git pull upstream cfsxy/dr_py
+          git upstream cfsxy/dr_py
           git push origin master
         
