@@ -12,12 +12,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Merge upstream
         run: |
-          git pull --unshallow
           # 自行替换要同步的上游仓库地址
           git remote add upstream https://github.com/hjdhnx/dr_py.git
           git fetch upstream
-          git checkout dr_py
-          git merge upstream/dr_py
-          git push origin dr_py
+          git rebase upstream/main
+          git push origin master
+          git push
           
           
