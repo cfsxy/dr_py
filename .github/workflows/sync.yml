@@ -18,6 +18,6 @@ jobs:
           git fetch upstream
           git checkout -b master cfsxy/dr_py
           git merge  hjdhnx/dr_py
-          git push origin cfsxy/dr_py
+          git push origin master
           
           
