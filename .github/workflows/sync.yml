@@ -13,7 +13,7 @@ fetch-upstream:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: myorg/myapp
+          repository: hjdhnx/dr_py
           token: ${{ github.token }}
       - name: Configure git
         run: |
