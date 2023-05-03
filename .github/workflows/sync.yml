@@ -6,20 +6,15 @@ on:
     # 每隔12小时
 
 jobs:
-merge:
+repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Merge upstream
-        run: |
-        git config user.name "cfsxy"
-        git config user.email "514624507@qq.com"
-        git pull 
-        git remote add upstream https://github.com/hjdhnx/dr_py.git
-        git fetch upstream
-        git checkout -b feature/x origin/feature/x
-        git merge --no-edit upstream/feature/x
-        git push origin feature/x
-        git checkout master
-        git merge --no-edit upstream/master
-        git push origin master
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "https://github.com/hjdhnx/dr_py.git"
+        source_branch: "hjdhnx/dr_py"
+        destination_branch: "cfsxy/dr_py"
