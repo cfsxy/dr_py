@@ -1,4 +1,4 @@
-name: Sync Fork
+name: Sync with upstream
 on:
   push:
   schedule:
@@ -7,13 +7,17 @@ on:
 
 jobs:
 sync:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: tgymnich/fork-sync@v1.8
-        with:
-
-          owner: cfsxy
-          base: dr_py
-          head: dr_py
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: master
+    - name: Fetch upstream
+      run: git remote add upstream https://github.com/hjdhnx/dr_py.git
+    - name: Sync with upstream
+      run: |
+        git fetch upstream
+        git checkout master
+        git merge upstream/master
+        git push
