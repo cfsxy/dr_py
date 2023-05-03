@@ -1,9 +1,8 @@
 name: Merge upstream branches
 on:
   push:
-    branches: [main, master]
   schedule:
-    - cron: 0 */12 * * *   # 每隔12小时
+    - cron: '0 */12 * * *'   # 每隔12小时
 
 jobs:
 merge:
