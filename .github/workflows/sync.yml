@@ -14,6 +14,6 @@ sync:
       - uses: tgymnich/fork-sync@v1.8
         with:
 
-          owner: hjdhnx
+          owner: cfsxy
           base: cfsxy/dr_py
           head: hjdhnx/dr_py
