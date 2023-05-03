@@ -13,7 +13,7 @@ fetch-upstream:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: hjdhnx/dr_py
+          repository: cfsxy/dr_py
       - name: Configure git
         run: |
           git config --global user.name "cfsxy"
