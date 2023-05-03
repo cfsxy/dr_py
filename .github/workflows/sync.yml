@@ -5,11 +5,12 @@ on:
     - cron: '0 */12 * * *'   # 每隔12小时
 
 jobs:
-merge:
+    sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Merge upstream
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Sync with upstream
       run: |
           git config --global user.name "cfsxy"
           git config --global user.email "514624507@qq.com"
