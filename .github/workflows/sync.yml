@@ -14,11 +14,7 @@ jobs:
       run: |
           git config --global user.name "cfsxy"
           git config --global user.email "514624507@qq.com"
-          git pull --unshallow
           git remote add upstream https://github.com/hjdhnx/dr_py.git
           git fetch upstream
-          git checkout master
-          git merge --no-edit upstream/master
+          git merge upstream/master --no-edit
           git push origin master
-          git fetch upstream --tags
-          git push --tags
