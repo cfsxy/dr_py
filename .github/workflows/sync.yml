@@ -13,6 +13,7 @@ sync:
     steps:
       - uses: tgymnich/fork-sync@v1.8
         with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
           owner: hjdhnx
           base: cfsxy/dr_py
           head: hjdhnx/dr_py
