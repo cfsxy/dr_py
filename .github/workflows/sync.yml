@@ -14,7 +14,6 @@ fetch-upstream:
         uses: actions/checkout@v2
         with:
           repository: hjdhnx/dr_py
-          token: ${{ github.token }}
       - name: Configure git
         run: |
           git config --global user.name "cfsxy"
