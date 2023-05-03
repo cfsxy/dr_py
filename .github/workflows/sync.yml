@@ -5,29 +5,19 @@ on:
     - cron: 0 */12 * * *   # 每隔12小时
 
 jobs:
-fetch-upstream:
+merge:
     runs-on: ubuntu-latest
-    name: Fetch Upstream
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          repository: cfsxy/dr_py
-      - name: Configure git
-        run: |
+      - uses: actions/checkout@v2
+      - name: Merge upstream
+      run: |
           git config --global user.name "cfsxy"
           git config --global user.email "514624507@qq.com"
+          git pull --unshallow
           git remote add upstream https://github.com/hjdhnx/dr_py.git
-        shell: bash
-      - name: Fetch and merge
-        id: fetch-merge
-        run: |
           git fetch upstream
-          git checkout main
-          lines=$( git diff main..upstream/main -- . ':(exclude).github/**' | wc -l )
-          echo "Number of detected line changes: $lines"
-          if [ $lines -gt 0 ]; then
-            git merge upstream/main
-            git push
-          fi
-        shell: bash
+          git checkout master
+          git merge --no-edit upstream/master
+          git push origin master
+          git fetch upstream --tags
+          git push --tags
