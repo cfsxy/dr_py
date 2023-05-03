@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: TobKed/github-forks-sync-action@master
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # 这个 token action 会默认配置, 这里只需这样写就行
           upstream_repository: https://github.com/hjdhnx/dr_py.git  # 上游仓库
           target_repository: https://github.com/cfsxy/dr_py.git  # 你要推送的仓库
           upstream_branch: master  # 默认是拉取上游仓库的master分支
