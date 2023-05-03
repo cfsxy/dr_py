@@ -12,5 +12,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: hjdhnx # fork 的上游仓库 user
-          head: https://github.com/hjdhnx/dr_py.git # fork 的上游仓库 branch
-          base: https://github.com/cfsxy/dr_py.git # 本地仓库 branch
+          head: https://github.com/hjdhnx/dr_py # fork 的上游仓库 branch
+          base: https://github.com/cfsxy/dr_py # 本地仓库 branch
