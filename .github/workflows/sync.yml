@@ -5,21 +5,12 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  sync:
+  repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout upstream
-        uses: actions/checkout@v2
+      - uses: TG908/fork-sync@v1.6.3
         with:
-          repository: https://github.com/hjdhnx/dr_py.git
-          ref: https://github.com/hjdhnx/dr_py
-          path: upstream
-      - name: Checkout fork
-        uses: actions/checkout@v2
-      - name: Sync
-        run: |
-          git config user.name 'cfsxy'
-          git config user.email '514624507@qq.com'
-          git fetch upstream https://github.com/hjdhnx/dr_py
-          git merge upstream/https://github.com/hjdhnx/dr_py --no-edit
-          git push
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: hjdhnx # fork 的上游仓库 user
+          head: https://github.com/hjdhnx/dr_py.git # fork 的上游仓库 branch
+          base: https://github.com/cfsxy/dr_py.git # 本地仓库 branch
