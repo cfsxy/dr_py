@@ -1,4 +1,4 @@
-name: Merge upstream
+name: Sync with upstream
 
 on:
   push:
@@ -6,19 +6,15 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  merge:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Merge upstream
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Sync with upstream
         run: |
-          git config user.name 'cfsxy'
-          git config user.email '514624507@qq.com'
-
-          # 自行替换要同步的上游仓库地址
           git remote add upstream https://github.com/hjdhnx/dr_py.git
           git fetch upstream
-          git checkout master
-          git pull
-          git push 
+          git merge upstream/master --no-edit
+          git push origin master
         
