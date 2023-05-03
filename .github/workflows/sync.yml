@@ -2,9 +2,8 @@ name: Merge upstream branches
 on:
   push:
   schedule:
-    - cron: 0 */12 * * *
-    # 每隔12小时
-workflow_dispatch:
+    - cron: 0 */12 * * *   # 每隔12小时
+
 jobs:
 fetch-upstream:
     runs-on: ubuntu-latest
