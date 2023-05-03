@@ -3,24 +3,9 @@ on:
   push:
   schedule:
     - cron: '0 */6 * * *'
-  workflow_dispatch:
+
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout upstream
-        uses: actions/checkout@v2
-        with:
-          repository: https://github.com/hjdhnx/dr_py.git
-          ref: https://github.com/cfsxy/dr_py.git
-          path: upstream
-      - name: Checkout fork
-        uses: actions/checkout@v2
-      - name: Sync
-        run: |
-          git config user.name "cfsxy"
-          git config user.email "514624507@qq.com"
-          git fetch upstream upstream-branch
-          git merge upstream/upstream-branch --no-edit
-          git push
-        
+  git remote add upstream https://github.com/hjdhnx/dr_py.git
+  git fetch upstream
+  git checkout master
+  git merge upstream/master   
