@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: https://github.com/hjdhnx/dr_py.git
-          ref: https://github.com/cfsxy/dr_py
+          ref: https://github.com/cfsxy/dr_py.git
           path: upstream
       - name: Checkout fork
         uses: actions/checkout@v2
