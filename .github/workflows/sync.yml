@@ -18,3 +18,4 @@ repo-sync:
         source_repo: "https://github.com/hjdhnx/dr_py.git"
         source_branch: "hjdhnx/dr_py"
         destination_branch: "cfsxy/dr_py"
+        github_token: ${{ secrets.PAT }}
