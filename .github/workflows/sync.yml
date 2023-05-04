@@ -7,21 +7,15 @@ on:
     - cron: '0 */12 * * *'   # 每隔12小时
 
 jobs:
-   sync:
+   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout upstream
-        uses: actions/checkout@v2
-        with:
-          repository: hjdhnx/dr_py.git
-          ref:  upstream-branch
-          path: upstream
-      - name: Checkout fork
-        uses: actions/checkout@v2
-      - name: Sync
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Sync with Upstream
       run: |
-          git config  user.name "cfsxy"
-          git config  user.email "514624507@qq.com"
-          git fetch upstream upstream-branch
-          git merge upstream/upstream-branch --no-edit
-          git push
+        git remote add upstream https://github.com/hjdhnx/dr_py.git
+        git fetch upstream
+        git checkout master
+        git merge upstream/master
+        git push origin master
