@@ -1,8 +1,6 @@
 name: Sync with upstream
 on:
   push:
-    branches:
-    - master # 更改的分支名称
   schedule:
     - cron: '0 */12 * * *'   # 每隔12小时
 
