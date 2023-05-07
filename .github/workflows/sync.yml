@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: https://github.com/hjdhnx/dr_py
-          ref: hjdhnx/dr_py
+          ref: main
           path: upstream
       - name: Checkout fork
         uses: actions/checkout@v2
