@@ -10,7 +10,7 @@ jobs:
       - name: Checkout upstream
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/hjdhnx/dr_py
+          repository: hjdhnx/dr_py
           ref: main
           path: upstream
       - name: Checkout fork
