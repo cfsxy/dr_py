@@ -16,7 +16,7 @@ jobs:
       run: git remote add upstream https://github.com/hjdhnx/dr_py.git
     - name: Sync with upstream
     env:
-        GITHUB_TOKEN: ${{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}}
+        GITHUB_TOKEN: ${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}
       run: |
         git fetch upstream
         git checkout master
