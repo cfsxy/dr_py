@@ -1,17 +1,19 @@
-name: Sync with upstream
+name: Merge upstream branches
 on:
   push:
   schedule:
     - cron: '0 */12 * * *'   # 每隔12小时
 
 jobs:
-   build:
+   merge:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Sync with Upstream
+      - uses: actions/checkout@v2
+      - name: Merge upstream
       run: |
+       git config --global user.name 'cfsxy'
+      git config --global user.email '514624507@qq.com'
+      git pull --unshallow
         git remote add upstream https://github.com/hjdhnx/dr_py.git
         git fetch upstream
         git checkout master
