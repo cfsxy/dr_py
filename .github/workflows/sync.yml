@@ -1,21 +1,16 @@
-name: Merge upstream branches
+name: Sync Fork
 on:
   push:
   schedule:
     - cron: '0 */12 * * *'   # 每隔12小时
 
 jobs:
-   merge:
+    repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Merge upstream
-      run: |
-       git config --global user.name 'cfsxy'
-      git config --global user.email '514624507@qq.com'
-      git pull --unshallow
-        git remote add upstream https://github.com/hjdhnx/dr_py.git
-        git fetch upstream
-        git checkout master
-        git merge upstream/master
-        git push origin master
+      - uses: TG908/fork-sync@v1.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # 这个 token action 会默认配置, 这里只需这样写就行
+          owner: hjdhnx # fork 上游项目 owner
+          head: hjdhnx/dr_py # fork 上游项目需要同步的分支
+          base: cfsxy/dr_py # 需要同步到本项目的目标分支
