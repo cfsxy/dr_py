@@ -10,8 +10,8 @@ jobs:
       - name: Checkout upstream
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/hjdhnx/dr_py.git
-          ref: hjdhnx/dr_py
+          repository: hjdhnx/dr_py
+          ref: dr_py
           path: upstream
       - name: Checkout fork
         uses: actions/checkout@v2
@@ -19,6 +19,6 @@ jobs:
         run: |
           git config user.name "cfsxy"
           git config user.email "514624507@qq.com"
-          git fetch upstream hjdhnx/dr_py
-          git merge upstream/hjdhnx/dr_py --no-edit
+          git fetch upstream dr_py
+          git merge upstream/dr_py --no-edit
           git push
