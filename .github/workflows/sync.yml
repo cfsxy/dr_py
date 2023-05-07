@@ -1,7 +1,6 @@
 name: Sync with upstream
 on:
   push:
-    branches:
   schedule:
     - cron: '0 */12 * * *'
 
