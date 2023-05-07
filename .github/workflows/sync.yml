@@ -4,21 +4,20 @@ on:
   schedule:
     - cron: '0 */12 * * *'
 jobs:
-   sync:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout upstream
-        uses: actions/checkout@v2
-        with:
-          repository: hjdhnx/dr_py
-          ref: dr_py
-          path: upstream
-      - name: Checkout fork
-        uses: actions/checkout@v2
-      - name: Sync
-        run: |
-          git config user.name "cfsxy"
-          git config user.email "514624507@qq.com"
-          git fetch upstream dr_py
-          git merge upstream/dr_py --no-edit
-          git push
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: master
+    - name: Fetch upstream
+      run: git remote add upstream https://github.com/hjdhnx/dr_py.git
+    - name: Sync with upstream
+      env:
+        GITHUB_TOKEN: ${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}
+      run: |
+        git fetch upstream
+        git checkout master
+        git merge upstream/master
+        git push
