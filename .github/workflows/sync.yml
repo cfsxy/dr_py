@@ -5,20 +5,27 @@ on:
     - cron: '0 */12 * * *'
 
 jobs:
-  sync:
+  sync_latest_from_upstream:
     runs-on: ubuntu-latest
+    name: Sync latest commits from upstream repo
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: master
-    - name: Fetch upstream
-      run: git remote add upstream https://github.com/hjdhnx/dr_py.git
-    - name: Sync with upstream
-      env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-      run: |
-        git fetch upstream
-        git checkout master
-        git merge upstream/master
-        git push
+   - name: Configure Private Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+      - name: Push dr_py
+        env:
+          SOURCE_REPO: 'https://github.com/hjdhnx/dr_py.git'
+          DESTINATION_REPO: 'git@github.com:cfsxy/dr_py.git'
+        run: |
+          git clone --mirror "$SOURCE_REPO" && cd `basename "$SOURCE_REPO"`
+          git remote set-url --push origin "$DESTINATION_REPO"
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --dr_py
+    
