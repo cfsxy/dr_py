@@ -71,15 +71,18 @@ def rules_to_view():
 def random_pics():
     id = getParmas('id')
     # print(f'id:{id}')
-    pics = getPics()
+    base_path = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))  # 上级目录
+    path = 'images'
+    img_path = os.path.join(base_path, f'{path}')
+    pics = getPics(img_path)
     # print(pics)
     new_conf = cfg
     lsg = storage_service()
     store_conf_dict = lsg.getStoreConfDict()
     new_conf.update(store_conf_dict)
-    if not new_conf.WALL_PAPER and len(pics) > 0:
-        if id and f'images/{id}.jpg' in pics:
-            pic = f'images/{id}.jpg'
+    if not new_conf.WALL_PAPER or (id and len(pics) > 0):
+        if id and f'{img_path}/{id}.jpg' in pics:
+            pic = f'{img_path}/{id}.jpg'
         else:
             pic = random.choice(pics)
         file = open(pic, "rb").read()
@@ -242,6 +245,7 @@ def config_render(mode):
     tt = time()
     UA = request.headers['User-Agent']
     ver = getParmas('ver')
+    m = getParmas('mode')
     sp = getParmas('sp')  # 优选
     logger.info(f'ver:{ver},UA:{UA}')
     if ver not in ['1','2']:
@@ -267,6 +271,11 @@ def config_render(mode):
     js_proxy = new_conf.JS_PROXY
     js0_password = new_conf.JS0_PASSWORD
     js_mode = int(new_conf.JS_MODE or 0)
+    if m:
+        try:
+            js_mode = int(m)
+        except:
+            pass
     print(f'{type(js_mode)} jsmode:{js_mode}')
     # print(ali_token)
     customConfig = getCustonDict(host,ali_token,js0_password)
@@ -415,6 +424,7 @@ def sort_parses_by_order(parses,host):
             parses[i]['order'] = 0
             parses[i]['write_date'] = 0
 
+        # 外层自动补header
         if not parses[i].get('header'):
             parses[i]['header'] = {'User-Agent': 'Mozilla/5.0'}
         if str(parses[i]['url']).startswith('/'):
